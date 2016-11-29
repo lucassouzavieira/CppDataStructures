@@ -19,9 +19,10 @@
 #include "Sorting/ArraySorting.h"
 
 int main() {
-    std::vector<long int> set = {1, 20, 23, 12, -3, 45, 10};
+    std::vector<long int> set = {1, 20, 23, 12, -3, 45, 10, 60};
 
-    Sorting::ArraySorting::ShellSort(set);
+    Sorting::ArraySorting::QuickSort(set);
+
 
     for(int i = 0; i < set.size(); i++){
         std::cout << set[i] << endl;

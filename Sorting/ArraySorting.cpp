@@ -15,19 +15,59 @@
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
+#include <cmath>
+#include <iostream>
 #include "ArraySorting.h"
 
 using namespace std;
 using namespace Sorting;
 
+/**
+ * @param set vetor com elementos a serem ordenados
+ */
 void ArraySorting::QuickSort(vector<long int> &set)
 {
-
+    ArraySorting::Quick(set, 0, set.size() - 1);
 }
 
+/**
+ * @param set vetor com elementos a serem ordenados
+ * @param startPosition posicao de inicio
+ * @param endPosition posicao final
+ */
 void ArraySorting::Quick(vector<long int> &set, long int startPosition, long int endPosition)
 {
+    long int i = startPosition;
+    long int j = endPosition;
 
+    long int pivot = set.at((startPosition + endPosition) / 2);
+
+    while(i < j){
+
+        while (set.at(i) < pivot){
+            i++;
+        }
+
+        while (set.at(j) > pivot){
+            j--;
+        }
+
+        if(i <= j){
+            long int temp = set.at(i);
+            set[i] = set.at(j);
+            set[j] = temp;
+            i++;
+            j--;
+        }
+    }
+
+    if(j > startPosition){
+        ArraySorting::Quick(set, startPosition, j);
+    }
+
+    if(i < endPosition){
+        ArraySorting::Quick(set, i, endPosition);
+    }
 }
 
 /**
