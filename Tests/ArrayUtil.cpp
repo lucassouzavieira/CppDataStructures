@@ -16,11 +16,21 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <random>
+#include <functional>
 #include "ArrayUtil.h"
 
 using namespace Tests;
 
-vector<long int> ArrayUtil::RandomArray()
+vector<long int> ArrayUtil::RandomArray(const long int size)
 {
+    vector<long int> randomVector;
+    std::default_random_engine generator;
+    std::uniform_int_distribution<long int> distribution(-4294967296, 4294967296);
+    auto bindGen = std::bind (distribution, generator);
 
+    for(long int i = 0; i < size; i++){
+        randomVector.push_back(bindGen());
+    }
+
+    return randomVector;
 }

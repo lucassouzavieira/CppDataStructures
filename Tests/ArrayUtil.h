@@ -26,7 +26,7 @@ namespace Tests {
 
     class ArrayUtil {
     public:
-        static vector<long int> RandomArray();
+        static vector<long int> RandomArray(const long int size);
 
     private:
         ArrayUtil();

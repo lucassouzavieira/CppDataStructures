@@ -17,12 +17,11 @@
 
 #include <iostream>
 #include "Sorting/ArraySorting.h"
+#include "Tests/ArrayUtil.h"
 
 int main() {
-    std::vector<long int> set = {1, 20, 23, 12, -3, 45, 10, 60};
 
-    Sorting::ArraySorting::QuickSort(set);
-
+    vector<long int> set = Tests::ArrayUtil::RandomArray(5);
 
     for(int i = 0; i < set.size(); i++){
         std::cout << set[i] << endl;
