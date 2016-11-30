@@ -15,32 +15,28 @@
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef BINARYSEARCHTREE_H
-#define BINARYSEARCHTREE_H
 
-#include "TreeNode.h"
+#ifndef TREENODE_H
+#define TREENODE_H
 
 namespace Tree {
-    template  <class NodeType>
-    class BinarySearchTree {
+    template <class T>
+    class TreeNode {
+        friend class BinarySearchTree <T>;
+        friend class BTree <T>;
+
     public:
-        BinarySearchTree();
-        void insertNode(const NodeType & node);
-        void preOrderTraversal();
-        void inOrderTraversal();
-        void postOrderTraversal();
-        long int size();
+        TreeNode(const T &value);
+        T getData() const;
+        TreeNode<T>* getLeftChildren() const;
+        TreeNode<T>* getRightChildren() const;
 
-    protected:
-        TreeNode<NodeType> *root;
-        long int elements;
-        void insertNodeHelper(TreeNode<NodeType> **, const NodeType &value);
-        void preOrderHelper(TreeNode<NodeType> *) const;
-        void inOrderHelper(TreeNode<NodeType> *) const;
-        void postOrderHelper(TreeNode<NodeType> *) const;
-
+    private:
+        TreeNode <T> *left;
+        TreeNode <T> *right;
+        T data;
     };
 }
 
 
-#endif //BINARYSEARCHTREE_H
+#endif //TREENODE_H

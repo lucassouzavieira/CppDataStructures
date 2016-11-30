@@ -3,12 +3,13 @@
 #define BTREE_H
 
 
+#include "TreeNode.h"
+
 namespace Tree {
 
     class BTree {
 
     };
-
 }
 
 
