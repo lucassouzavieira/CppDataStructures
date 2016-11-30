@@ -19,23 +19,48 @@
 #ifndef TREENODE_H
 #define TREENODE_H
 
-namespace Tree {
-    template <class T>
-    class TreeNode {
-        friend class BinarySearchTree <T>;
-        friend class BTree <T>;
+#include "BinarySearchTree.h"
 
+namespace Tree {
+
+    class TreeNode {
+        friend class BinarySearchTree;
     public:
-        TreeNode(const T &value);
-        T getData() const;
-        TreeNode<T>* getLeftChildren() const;
-        TreeNode<T>* getRightChildren() const;
+        TreeNode(const long int value)
+        {
+            this->right = nullptr;
+            this->left = nullptr;
+            this->data = value;
+        }
+
+        TreeNode()
+        {
+            this->right = nullptr;
+            this->left = nullptr;
+            this->data = 0;
+        }
+
+        long int getData() const
+        {
+            return this->data;
+        }
+
+        TreeNode* getLeftChildren() const
+        {
+            return this->left;
+        }
+
+        TreeNode* getRightChildren() const
+        {
+            return this->right;
+        }
 
     private:
-        TreeNode <T> *left;
-        TreeNode <T> *right;
-        T data;
+        TreeNode *left;
+        TreeNode *right;
+        long int data;
     };
+
 }
 
 

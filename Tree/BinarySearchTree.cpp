@@ -15,130 +15,128 @@
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include <cassert>
-#include <iostream>
 #include "BinarySearchTree.h"
 
-using namespace std;
 using namespace Tree;
 
-/**
- * Construtor
- * @tparam NodeType
- */
-template <class NodeType>
 BinarySearchTree::BinarySearchTree()
 {
     this->root = nullptr;
     this->elements = 0;
 }
 
-/**
- * Insere um elemento na arvore
- * @tparam NodeType Tipo de dados
- * @param node valor do novo no
- */
-template <class NodeType>
-void BinarySearchTree::insertNode(const NodeType &node)
+void BinarySearchTree::insert(const long int &node)
 {
-    this->insertNodeHelper(&this->root, node);
+    this->insertHelper(&this->root, node);
 }
 
-/**
- * Insere recursivamente elementos na arvore
- * @tparam NodeType
- * @param pTreeNode
- * @param value
- */
-template <class NodeType>
-void BinarySearchTree::insertNodeHelper(TreeNode<NodeType> **pTreeNode, const NodeType &value)
+void BinarySearchTree::preOrderTraversal()
 {
-    if(*pTreeNode == nullptr) {
-        *pTreeNode = new TreeNode<NodeType>(value);
+    std::cout << "Pre-Order Traversal" << std::endl;
+    this->preOrderHelper(this->root);
+}
+
+void BinarySearchTree::inOrderTraversal()
+{
+    std::cout << "In-Order Traversal" << std::endl;
+    this->inOrderHelper(this->root);
+}
+
+void BinarySearchTree::postOrderTraversal()
+{
+    std::cout << "Post-Order Traversal" << std::endl;
+    this->postOrderHelper(this->root);
+}
+
+long int BinarySearchTree::size()
+{
+    return this->elements;
+}
+
+void BinarySearchTree::insertHelper(TreeNode **pTreeNode, const long int &value)
+{
+    if(*pTreeNode == nullptr){
+        *pTreeNode = new TreeNode(value);
         assert(*pTreeNode != nullptr);
         this->elements++;
         return;
     }
 
     if(value < (*pTreeNode)->getData()){
-        this->insertNodeHelper(&((*pTreeNode)->left), value);
-        return;
+        this->insertHelper(&(*pTreeNode)->left, value);
     }
 
     if(value > (*pTreeNode)->getData()){
-        this->insertNodeHelper(&((*pTreeNode)->right), value);
-        return;
+        this->insertHelper(&(*pTreeNode)->right, value);
     }
 }
 
-/**
- * Metodos para percurso em pre-ordem
- * @tparam NodeType
- */
-template <class NodeType>
-void BinarySearchTree::preOrderTraversal()
+void BinarySearchTree::preOrderHelper(TreeNode *root) const
 {
-    this->preOrderHelper(this->root);
-}
-
-template <class NodeType>
-void BinarySearchTree::preOrderHelper(TreeNode<NodeType> *rootPtr) const
-{
-    if(rootPtr != nullptr){
-        cout << rootPtr->getData() << endl;
-        preOrderHelper(rootPtr->getLeftChildren());
-        preOrderHelper(rootPtr->getRightChildren());
+    if(root != nullptr) {
+        std::cout << root->getData() << std::endl;
+        preOrderHelper(root->getLeftChildren());
+        preOrderHelper(root->getRightChildren());
     }
 }
 
-/**
- * Metodos para percursos in-ordem
- * @tparam NodeType
- */
-template <class NodeType>
-void BinarySearchTree::inOrderTraversal()
+void BinarySearchTree::inOrderHelper(TreeNode *root) const
 {
-    this->inOrderHelper(this->root);
-}
-
-template <class NodeType>
-void BinarySearchTree::inOrderHelper(TreeNode<NodeType> *rootPtr) const
-{
-    if(rootPtr != nullptr){
-        preOrderHelper(rootPtr->getLeftChildren());
-        cout << rootPtr->getData() << endl;
-        preOrderHelper(rootPtr->getRightChildren());
+    if(root != nullptr) {
+        inOrderHelper(root->getLeftChildren());
+        std::cout << root->getData() << std::endl;
+        inOrderHelper(root->getRightChildren());
     }
 }
 
-/**
- * Metodos para percursos pos-ordem
- * @tparam NodeType
- */
-template <class NodeType>
-void BinarySearchTree::postOrderTraversal()
+void BinarySearchTree::postOrderHelper(TreeNode *root) const
 {
-    this->preOrderHelper(this->root);
-}
-
-template <class NodeType>
-void BinarySearchTree::postOrderHelper(TreeNode<NodeType> *rootPtr) const
-{
-    if(rootPtr != nullptr){
-        preOrderHelper(rootPtr->getLeftChildren());
-        preOrderHelper(rootPtr->getRightChildren());
-        cout << rootPtr->getData() << endl;
+    if(root != nullptr) {
+        inOrderHelper(root->getLeftChildren());
+        inOrderHelper(root->getRightChildren());
+        std::cout << root->getData() << std::endl;
     }
 }
 
-/**
- * Retorna a quantidade de elementos na arvore
- * @tparam NodeType
- * @return
- */
-template <class NodeType>
-long int BinarySearchTree::size()
+bool BinarySearchTree::isEmpty()
 {
-    return this->elements;
+    return this->root == nullptr;
 }
+
+bool BinarySearchTree::search(const long int value) const
+{
+    return this->searchHelper(this->root, value);
+}
+
+bool BinarySearchTree::searchHelper(TreeNode *root, long int value) const
+{
+    if(root == nullptr)
+        return false;
+
+    if(root->getData() == value)
+        return true;
+
+    if(root->getData() > value)
+        return this->searchHelper(root->getLeftChildren(), value);
+
+    if(root->getData() < value)
+        return this->searchHelper(root->getRightChildren(), value);
+
+}
+
+bool BinarySearchTree::remove(const long value)
+{
+    return this->removeHelper(this->root, value);
+}
+
+bool BinarySearchTree::removeHelper(TreeNode *root, long int value) const
+{
+    if(!this->search(value))
+        return false;
+
+    return false;
+}
+
+
+
 

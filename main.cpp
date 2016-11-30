@@ -18,12 +18,33 @@
 #include <iostream>
 #include "Sorting/ArraySorting.h"
 #include "Tests/ArrayUtil.h"
+#include "Tree/TreeNode.h"
+#include "Tree/BinarySearchTree.h"
+
+using namespace std;
+using namespace Tree;
+using namespace Sorting;
+using namespace Tests;
+
 
 int main() {
 
     vector<long int> set = Tests::ArrayUtil::RandomArray(5);
 
-    for(int i = 0; i < set.size(); i++){
-        std::cout << set[i] << endl;
-    }
+    Tree::TreeNode *node = new Tree::TreeNode();
+    Tree::BinarySearchTree *binarySearchTree = new Tree::BinarySearchTree();
+
+    binarySearchTree->insert(10);
+    binarySearchTree->insert(30);
+    binarySearchTree->insert(4);
+    binarySearchTree->insert(20);
+    binarySearchTree->insert(12);
+    binarySearchTree->insert(14);
+    binarySearchTree->insert(31);
+    binarySearchTree->insert(7);
+
+    binarySearchTree->preOrderTraversal();
+
+    cout << binarySearchTree->size() << endl;
+
 }

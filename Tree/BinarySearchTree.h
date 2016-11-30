@@ -18,29 +18,42 @@
 #ifndef BINARYSEARCHTREE_H
 #define BINARYSEARCHTREE_H
 
+#include <cassert>
+#include <iostream>
 #include "TreeNode.h"
 
+class TreeNode;
+
 namespace Tree {
-    template  <class NodeType>
+
     class BinarySearchTree {
     public:
         BinarySearchTree();
-        void insertNode(const NodeType & node);
+
+        void insert(const long int &node);
         void preOrderTraversal();
         void inOrderTraversal();
         void postOrderTraversal();
+
         long int size();
 
-    protected:
-        TreeNode<NodeType> *root;
+        bool isEmpty();
+        bool search(const long int value) const;
+        bool remove(const long int value);
+
+    private:
+        TreeNode *root;
         long int elements;
-        void insertNodeHelper(TreeNode<NodeType> **, const NodeType &value);
-        void preOrderHelper(TreeNode<NodeType> *) const;
-        void inOrderHelper(TreeNode<NodeType> *) const;
-        void postOrderHelper(TreeNode<NodeType> *) const;
 
+        void insertHelper(TreeNode **pTreeNode, const long int &value);
+        void preOrderHelper(TreeNode *root) const;
+        void inOrderHelper(TreeNode *root) const;
+        void postOrderHelper(TreeNode *root) const;
+
+        bool searchHelper(TreeNode *root, long int value) const;
+        bool removeHelper(TreeNode *root, long int value) const;
     };
-}
 
+}
 
 #endif //BINARYSEARCHTREE_H
