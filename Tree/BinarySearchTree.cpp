@@ -53,6 +53,10 @@ long int BinarySearchTree::size()
     return this->elements;
 }
 
+long int BinarySearchTree::heigth()
+{
+    return 0;
+}
 void BinarySearchTree::insertHelper(TreeNode **pTreeNode, const long int &value)
 {
     if(*pTreeNode == nullptr){

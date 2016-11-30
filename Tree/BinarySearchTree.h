@@ -36,6 +36,7 @@ namespace Tree {
         void postOrderTraversal();
 
         long int size();
+        long int heigth();
 
         bool isEmpty();
         bool search(const long int value) const;
