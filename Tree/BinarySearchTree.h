@@ -42,6 +42,8 @@ namespace Tree {
         bool search(const long int value) const;
         bool remove(const long int value);
 
+        ~BinarySearchTree();
+
     private:
         TreeNode *root;
         long int elements;
@@ -50,9 +52,13 @@ namespace Tree {
         void preOrderHelper(TreeNode *root) const;
         void inOrderHelper(TreeNode *root) const;
         void postOrderHelper(TreeNode *root) const;
+        void* mostLeft(TreeNode* root) const;
+        void* mostRight(TreeNode* root) const;
 
         bool searchHelper(TreeNode *root, long int value) const;
-        bool removeHelper(TreeNode *root, long int value) const;
+        bool removeHelper(TreeNode **root, long int value) const;
+
+        long int heightHelper(TreeNode* root);
     };
 
 }

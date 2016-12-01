@@ -35,16 +35,12 @@ int main() {
     Tree::BinarySearchTree *binarySearchTree = new Tree::BinarySearchTree();
 
     binarySearchTree->insert(10);
-    binarySearchTree->insert(30);
-    binarySearchTree->insert(4);
-    binarySearchTree->insert(20);
-    binarySearchTree->insert(12);
-    binarySearchTree->insert(14);
-    binarySearchTree->insert(31);
-    binarySearchTree->insert(7);
+    binarySearchTree->insert(16);
+    binarySearchTree->insert(15);
+    binarySearchTree->insert(17);
+    binarySearchTree->insert(6);
 
-    binarySearchTree->preOrderTraversal();
 
-    cout << binarySearchTree->size() << endl;
+    cout << binarySearchTree->heigth() << endl;
 
 }

@@ -55,6 +55,20 @@ namespace Tree {
             return this->right;
         }
 
+        int hasChildren() const
+        {
+            int children = 0;
+            if(this->getRightChildren() != nullptr)
+                children++;
+
+            if(this->getLeftChildren() != nullptr)
+                children++;
+
+            return children;
+        }
+
+
+
     private:
         TreeNode *left;
         TreeNode *right;
