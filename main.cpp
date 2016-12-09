@@ -40,7 +40,5 @@ int main() {
     binarySearchTree->insert(17);
     binarySearchTree->insert(6);
 
-
-    cout << binarySearchTree->heigth() << endl;
-
+    binarySearchTree->inOrderTraversal();
 }

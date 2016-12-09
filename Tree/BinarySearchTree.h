@@ -40,7 +40,6 @@ namespace Tree {
 
         bool isEmpty();
         bool search(const long int value) const;
-        bool remove(const long int value);
 
         ~BinarySearchTree();
 
@@ -56,7 +55,6 @@ namespace Tree {
         void* mostRight(TreeNode* root) const;
 
         bool searchHelper(TreeNode *root, long int value) const;
-        bool removeHelper(TreeNode **root, long int value) const;
 
         long int heightHelper(TreeNode* root);
     };

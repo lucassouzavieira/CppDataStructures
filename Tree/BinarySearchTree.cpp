@@ -163,20 +163,6 @@ bool BinarySearchTree::searchHelper(TreeNode *root, long int value) const
 }
 
 /**
- * Remove a node from tree
- * @param root
- * @param value
- * @return
- */
-bool BinarySearchTree::remove(const long value)
-{
-    if(!this->search(value))
-        return false;
-
-    return this->removeHelper(&(this->root), value);
-}
-
-/**
  * Tree height helper
  * @param root
  * @return
@@ -228,59 +214,6 @@ void *BinarySearchTree::mostRight(TreeNode *root) const
         mostRight = root->getLeftChildren();
 
     return mostRight;
-}
-
-// TODO review this
-/**
- * Remove helper method
- * @param root
- * @param value
- * @return
- */
-bool BinarySearchTree::removeHelper(TreeNode **root, long int value) const
-{
-    if(value < (*root)->getData())
-        return removeHelper(&(*root)->left, value);
-
-    if(value > (*root)->getData())
-        return removeHelper(&(*root)->right, value);
-
-    TreeNode* pTreeNode = (*root);
-
-    // has no children
-    if((*root)->hasChildren() == 0){
-        delete pTreeNode;
-        (*root) = nullptr;
-    }
-
-    // has only right children
-    if((*root)->left == nullptr){
-        (*root) = (*root)->right;
-        pTreeNode->right = nullptr;
-        delete pTreeNode;
-        pTreeNode = nullptr;
-    }
-
-    // has only left children
-    if((*root)->right == nullptr){
-        (*root) = (*root)->left;
-        pTreeNode->left = nullptr;
-        delete pTreeNode;
-        pTreeNode = nullptr;
-    }
-
-    // has two children
-    if(((*root)->left != nullptr) && ((*root)->right != nullptr)){
-        pTreeNode = (TreeNode*) this->mostLeft((*root));
-        pTreeNode->left = (*root)->left;
-        pTreeNode->right = (*root)->right;
-        (*root)->left = (*root)->right = nullptr;
-        delete (*root);
-        (*root) = pTreeNode;
-        pTreeNode = nullptr;
-    }
-
-    return true;
 }
 
 /**
