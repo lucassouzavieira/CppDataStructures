@@ -28,6 +28,7 @@ using namespace std;
 namespace BTree {
 
     class BTreeNode {
+        friend class BTree;
     private:
         bool isLeaf;
         int order;
@@ -43,7 +44,7 @@ namespace BTree {
          * @param order B Tree order
          * @param isLeaf
          */
-        BTreeNode(int order, bool isLeaf)
+        BTreeNode(int order, bool isLeaf = true)
         {
             this->isLeaf = isLeaf;
             this->order = order;
@@ -446,6 +447,25 @@ namespace BTree {
             }
 
             return this->children[this->keys.size()];
+        }
+
+        /**
+         * Gets the position to insert new key
+         * @param key
+         * @return
+         */
+        int getNextKeyPosition(long int key)
+        {
+            int position = 0;
+
+            for(int i = 0; i < this->keys.size(); i++){
+                if(key < this->keys.at(i))
+                    break;
+
+                position++;
+            }
+
+            return position;
         }
     };
 }
